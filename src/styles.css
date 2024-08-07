@@ -1,5 +1,33 @@
-*{
-    margin:0;
-    padding:0;
+* {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
-}
+    color: #4C4E64DE;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  }
+  
+  body {
+    background-color: whitesmoke;
+  }
+
+  a{
+    text-decoration: none;
+  }
+/* .boxShadow{
+    box-shadow: ;
+} */
+
+  /* h1: 96px
+  h2: 60px
+  h3: 48px
+  h4: 34px
+  h5: 24px
+  h6: 20px
+  subtitle1: 16px
+  subtitle2: 14px
+  body1: 16px
+  body2: 14px
+  button: 14px
+  caption: 12px
+  overline: 10px
+  color: rgba(0, 0, 0, 0.87); */
