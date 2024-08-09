@@ -94,12 +94,13 @@ import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import ContentPasteOutlinedIcon from '@mui/icons-material/ContentPasteOutlined';
+import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import { NavLink, Outlet } from 'react-router-dom';
 import Header from './Header';
 const drawerWidth = 240;
 
 export default function AdminLayout() {
-  const icons = [<HomeOutlinedIcon/>,<ContentPasteOutlinedIcon/>];
+  const icons = [<PersonOutlineIcon />,<ContentPasteOutlinedIcon/>];
     const listText = ['Users','Projects'];
     const listLinks = ['/','/projects'];
   return (
