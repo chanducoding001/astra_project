@@ -2,7 +2,6 @@ import React from 'react'
 import './styles.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Login from './auth/Login';
-import SuccessPage from './auth/SuccessPage';
 import SignUp from './auth/SignUp';
 import ForgotPassword from './auth/ForgotPassword';
 import DummyHome from './auth/DummyHome';

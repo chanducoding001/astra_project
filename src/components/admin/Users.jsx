@@ -1,5 +1,5 @@
 import React from 'react';
-import ReUseTable from './ReUseTable';
+import ReUseTable from '../../reusables/ReUseTable';
 
 const Users = () => {
   const rows = [
@@ -17,7 +17,7 @@ const Users = () => {
 
   return (
     <>
-      <ReUseTable rows={rows} columns={columns} />
+      <ReUseTable rows={rows} columns={columns} screen='users' addBtn={true} title='User List'/>
     </>
   );
 };

@@ -5,8 +5,8 @@ import * as Yup from 'yup';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import './auth.css';
 import '../styles.css';
-import SuccessPage from './SuccessPage';
 import { useNavigate, Link } from 'react-router-dom';
+import SuccessPage from '../reusables/SuccessPage';
 
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -103,24 +103,7 @@ const SignUp = () => {
                   )
                 }}
               />
-              {/* <div className="optionsContainer">
-                <FormControlLabel
-                  control={
-                    <Field
-                      name="rememberMe"
-                      as={Checkbox}
-                      className='customFontColor'
-                    />
-                  }
-                  label={<span className='typographyStyle'>Remember Me</span>}
-                />
-                <Typography variant="body2" className="signinLink typographyStyle">
-                <Link to='/forgotPassword' className='linkStyle'>Forgot Password?</Link>
-              </Typography>
-              </div> */}
-              {/* <Button variant="contained" type="submit" className='customButton'>
-                Sign UP
-              </Button> */}
+              
               <Button variant="contained" type="submit" fullWidth sx={{marginBottom:1,marginTop:2}}>
               Sign UP
               </Button>

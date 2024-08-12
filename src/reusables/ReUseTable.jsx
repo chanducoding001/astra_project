@@ -16,15 +16,35 @@ import { Link } from 'react-router-dom';
 import RepeatIcon from '@mui/icons-material/Repeat';
 import DeleteIcon from '@mui/icons-material/Delete';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import { Card } from '@mui/material';
-import './admin.css';
+import { Box, Card, Typography } from '@mui/material';
+import '../components/admin/admin.css';
+import AddIcon from '@mui/icons-material/Add';
+import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
+import AddTwoToneIcon from '@mui/icons-material/AddTwoTone';
+import SuccessPage from './SuccessPage';
+import { styled } from '@mui/material/styles';
+import AddUser from '../components/admin/AddUser';
+import UserAccess from '../components/admin/UserAccess';
 
-const ReUseTable = ({ rows, columns }) => {
+const ReUseTable = ({ rows, columns,screen,addBtn,title }) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [searchTerm, setSearchTerm] = useState('');
   const [activeRow, setActiveRow] = useState(null);
+  const [addUserPopUp,setAddUserPopUp] = useState(false);
+  const [userAccessPopUp,setUserAccessPopUp] = useState(false);
+  const [deletePopUp,setDeletePopUp] = useState(false);
 
+  const handleAddUserPopUp = ()=>{
+    setAddUserPopUp(!addUserPopUp);
+  }
+  const handleUserAccessPopUp = ()=>{
+    setUserAccessPopUp(!userAccessPopUp);
+  }
+  const handleDeletePopUp = ()=>{
+    setDeletePopUp(!deletePopUp);
+    
+  }
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -38,10 +58,12 @@ const ReUseTable = ({ rows, columns }) => {
     setActiveRow(activeRow === rowId ? null : rowId);
   };
   const handleUserAccess = (userId)=>{
-
+    setUserAccessPopUp(!userAccessPopUp);
+    setActiveRow(null);
   }
   const handleUserDelete = (userId)=>{
-    
+    setDeletePopUp(!deletePopUp);
+    setActiveRow(null);
   }
   const getCellContent = (column, row) => {
     if (column.id === 'action') {
@@ -85,11 +107,24 @@ const ReUseTable = ({ rows, columns }) => {
         value.toLowerCase().includes(searchTerm.toLowerCase())
     )
   );
-
+  const CustomButton = styled(Button)(({ theme }) => ({
+    color: 'white', 
+    backgroundColor: 'blue', 
+    '& .MuiSvgIcon-root': {
+      color: 'white', 
+    },
+    '&:hover': {
+      backgroundColor: 'darkblue', 
+    },
+  }));
   return (
     <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+      <Typography variant='h5' sx={{textAlign:'center',marginTop:'10px',
+                    fontWeight:'bold',}}>{title}</Typography>
+      <Box sx={{display:'flex',justifyContent:'space-between',alignItems:'center',padding:'0 30px'}}>
       <TextField
-        label="Search"
+        // label="Search"
+        // sx={{padding:'3px'}}
         variant="outlined"
         margin="normal"
         InputProps={{
@@ -101,6 +136,13 @@ const ReUseTable = ({ rows, columns }) => {
         }}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
+       {addBtn && (
+        <CustomButton variant="contained" onClick={handleAddUserPopUp}>
+          <AddOutlinedIcon style={{fill:'white',marginRight:10}}/>
+          Add User
+        </CustomButton>
+      )}
+      </Box>
       <TableContainer sx={{ maxHeight: 440 }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
@@ -111,9 +153,10 @@ const ReUseTable = ({ rows, columns }) => {
                   align={column.align}
                   style={{
                     minWidth: column.minWidth,
-                    fontSize: '1.2rem',
+                    fontSize: '1rem',
+                    color:'#4C4E64DE',
+                    textAlign:'center',
                     backgroundColor: '#E3ECFE',
-                    // backgroundColor: '#f2f2f2',
                   }}
                 >
                   {column.label}
@@ -127,12 +170,12 @@ const ReUseTable = ({ rows, columns }) => {
               .map((row, rowIndex) => (
                 <TableRow
                   hover
+                  key={rowIndex}
                   role="checkbox"
                   tabIndex={-1}
-                  key={row.code}
                   style={{
                     backgroundColor:'#ffffff',
-                    // backgroundColor: rowIndex % 2 === 0 ? '#ffffff' : '#f9f9f9',
+                    
                   }}
                 >
                   {columns.map((column) => (
@@ -141,6 +184,7 @@ const ReUseTable = ({ rows, columns }) => {
                       align={column.align}
                       style={{
                         fontSize: '1rem',
+                        textAlign:'center',
                       }}
                     >
                       {getCellContent(column, row)}
@@ -160,6 +204,18 @@ const ReUseTable = ({ rows, columns }) => {
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
+      <SuccessPage open={addUserPopUp} handleClose = {handleAddUserPopUp} boxStyles = {{height:250,width:300}}>
+        <AddUser handleAddUserPopUp={handleAddUserPopUp}/>
+      </SuccessPage>
+      <SuccessPage open={userAccessPopUp} handleClose = {handleUserAccessPopUp} boxStyles={{padding:1}}>
+        <UserAccess handleUserAccessPopUp={handleUserAccessPopUp}/>
+      </SuccessPage>
+      <SuccessPage open={deletePopUp} handleClose = {handleDeletePopUp}>
+        {/* <UserAccess handleUserAccessPopUp={handleUserAccessPopUp}/> */}
+        <Typography>You have successfully Deleted User!</Typography>
+          <Button variant='contained' onClick={handleDeletePopUp}>Close</Button>
+      </SuccessPage>
+      
     </Paper>
   );
 };

@@ -49,28 +49,9 @@
 
 import { Box, Button, Modal, Typography } from '@mui/material';
 import React from 'react';
-import './auth.css';
+import '../auth/auth.css';
 
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  height: 351,
-  bgcolor: 'background.paper',
-  border: '2px solid white',
-  boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1), 0 3px 10px rgba(0, 0, 0, 0.1)',
-//   boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1)',
-  pt: 2,
-  px: 4,
-  pb: 3,
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  flexDirection: 'column',
-  textAlign: 'center', // Ensures the text is centered
-};
+
 const wrapper = { 
     width: '100vw', 
     height: '100vh', 
@@ -80,7 +61,27 @@ const wrapper = {
     backgroundColor: 'whiteSmoke'
 }
 const SuccessPage = (props) => {
-  const { open, handleClose, children } = props;
+  const { open, handleClose, children,boxStyles } = props;
+  const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: boxStyles?.width ?? 400,
+    height: boxStyles?.height ?? 351,
+    bgcolor: 'background.paper',
+    border: '2px solid white',
+    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1), 0 3px 10px rgba(0, 0, 0, 0.1)',
+  //   boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1)',
+    pt: 2,
+    px: boxStyles?.padding ?? 4,
+    pb: 3,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    textAlign: 'center', // Ensures the text is centered
+  };
   return (
     <>
       <Modal
