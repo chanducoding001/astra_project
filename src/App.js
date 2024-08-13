@@ -6,8 +6,8 @@ import SignUp from './auth/SignUp';
 import ForgotPassword from './auth/ForgotPassword';
 import DummyHome from './auth/DummyHome';
 import AdminLayout from './layouts/AdminLayout';
-import Users from './components/admin/Users';
-import Projects from './components/admin/Projects';
+import Users from './components/admin/users/Users';
+import Projects from './components/admin/projects/Projects';
 
 const App = () => {
   return (

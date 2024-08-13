@@ -12,19 +12,16 @@ import TextField from '@mui/material/TextField';
 import SearchIcon from '@mui/icons-material/Search';
 import Button from '@mui/material/Button';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { Link } from 'react-router-dom';
 import RepeatIcon from '@mui/icons-material/Repeat';
-import DeleteIcon from '@mui/icons-material/Delete';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { Box, Card, Typography } from '@mui/material';
 import '../components/admin/admin.css';
-import AddIcon from '@mui/icons-material/Add';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
-import AddTwoToneIcon from '@mui/icons-material/AddTwoTone';
 import SuccessPage from './SuccessPage';
 import { styled } from '@mui/material/styles';
-import AddUser from '../components/admin/AddUser';
-import UserAccess from '../components/admin/UserAccess';
+import AddUser from '../components/admin/users/AddUser';
+import UserAccess from '../components/admin/users/UserAccess';
+import AddProject from '../components/admin/projects/AddProject';
 
 const ReUseTable = ({ rows, columns,screen,addBtn,title }) => {
   const [page, setPage] = useState(0);
@@ -34,6 +31,7 @@ const ReUseTable = ({ rows, columns,screen,addBtn,title }) => {
   const [addUserPopUp,setAddUserPopUp] = useState(false);
   const [userAccessPopUp,setUserAccessPopUp] = useState(false);
   const [deletePopUp,setDeletePopUp] = useState(false);
+  const [addProjectPopUp,setAddProjectPopUp] = useState(false);
 
   const handleAddUserPopUp = ()=>{
     setAddUserPopUp(!addUserPopUp);
@@ -44,6 +42,9 @@ const ReUseTable = ({ rows, columns,screen,addBtn,title }) => {
   const handleDeletePopUp = ()=>{
     setDeletePopUp(!deletePopUp);
     
+  }
+  const handleAddProjectPopUp = ()=>{
+    setAddProjectPopUp(!addProjectPopUp);
   }
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -136,12 +137,19 @@ const ReUseTable = ({ rows, columns,screen,addBtn,title }) => {
         }}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
-       {addBtn && (
-        <CustomButton variant="contained" onClick={handleAddUserPopUp}>
-          <AddOutlinedIcon style={{fill:'white',marginRight:10}}/>
-          Add User
-        </CustomButton>
-      )}
+       
+    {screen === 'users' ? (
+  <CustomButton variant="contained" onClick={handleAddUserPopUp}>
+    <AddOutlinedIcon style={{ fill: 'white', marginRight: 10 }} />
+    Add User
+  </CustomButton>
+) : screen === 'projects' ? (
+  <CustomButton variant="contained" onClick={handleAddProjectPopUp}>
+    <AddOutlinedIcon style={{ fill: 'white', marginRight: 10 }} />
+    Add Project
+  </CustomButton>
+) : null}
+
       </Box>
       <TableContainer sx={{ maxHeight: 440 }}>
         <Table stickyHeader aria-label="sticky table">
@@ -154,7 +162,8 @@ const ReUseTable = ({ rows, columns,screen,addBtn,title }) => {
                   style={{
                     minWidth: column.minWidth,
                     fontSize: '1rem',
-                    color:'#4C4E64DE',
+                    // color:'#4C4E64DE',
+                    color:'blue',
                     textAlign:'center',
                     backgroundColor: '#E3ECFE',
                   }}
@@ -211,9 +220,11 @@ const ReUseTable = ({ rows, columns,screen,addBtn,title }) => {
         <UserAccess handleUserAccessPopUp={handleUserAccessPopUp}/>
       </SuccessPage>
       <SuccessPage open={deletePopUp} handleClose = {handleDeletePopUp}>
-        {/* <UserAccess handleUserAccessPopUp={handleUserAccessPopUp}/> */}
         <Typography>You have successfully Deleted User!</Typography>
           <Button variant='contained' onClick={handleDeletePopUp}>Close</Button>
+      </SuccessPage>
+      <SuccessPage open={addProjectPopUp} handleClose = {handleAddProjectPopUp}>
+        <AddProject onClick={handleAddProjectPopUp}/>
       </SuccessPage>
       
     </Paper>

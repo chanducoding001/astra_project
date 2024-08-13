@@ -1,10 +1,10 @@
 import React from 'react';
-import ReUseTable from '../../reusables/ReUseTable';
+import ReUseTable from '../../../reusables/ReUseTable';
 
 const Users = () => {
   const rows = [
-    { id: 1,userNo:'0000001', email: 'Chandu', age: 28, role: 'Admin' },
-    { id: 2,userNo:'0000002', email: 'Mani Kiran', age: 32, role: 'User' },
+    { id: 1,userNo:'0000001', email: 'chandu@gmail.com', age: 28, role: 'Admin' },
+    { id: 2,userNo:'0000002', email: 'manikiran@gmail.com', age: 32, role: 'User' },
   ];
 
   const columns = [

@@ -1,5 +1,5 @@
 import React from 'react'
-import ReUseTable from '../../reusables/ReUseTable';
+import ReUseTable from '../../../reusables/ReUseTable';
 import { NavLink } from 'react-router-dom';
 
 const Projects = () => {
@@ -39,7 +39,8 @@ const Projects = () => {
   ];
   return (
     <>
-    <ReUseTable rows={rows} columns={columns} screen='users' addBtn={false} title='Projects'/>
+    {/* <h2>Projects</h2> */}
+    <ReUseTable rows={rows} columns={columns} screen='projects' addBtn={false} title='Projects'/>
     </>
   )
 }

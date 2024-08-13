@@ -1,4 +1,5 @@
 import { Box, Button, TextField, Typography } from '@mui/material';
+import { Formik } from 'formik';
 import React from 'react'
 
 const AddUser = (props) => {
@@ -32,3 +33,29 @@ const AddUser = (props) => {
 }
 
 export default AddUser;
+
+// import { Box, Button, TextField, Typography } from '@mui/material';
+// import { Formik } from 'formik';
+// import React from 'react'
+
+// const AddUser = (props) => {
+//     const {handleAddUserPopUp} = props;
+//   return (
+//     <>
+//           <Typography variant='h6' sx={{fontWeight:'600'}}>Add User</Typography>
+//     <Formik sx={{display:'flex',
+//           flexDirection:'column',
+//           width:'100%',
+//           height:'100%',
+//           alignItems:'flex-start',
+//           justifyContent:'center'
+//           }}>
+//             {
+//               ({})
+//             }
+//         </Formik>
+//     </>
+//   )
+// }
+
+// export default AddUser;

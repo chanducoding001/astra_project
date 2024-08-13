@@ -27,7 +27,7 @@ const Login = () => {
   const onSubmit = (values, { resetForm }) => {
     console.log(values);
     resetForm({ values: { ...initialValues, rememberMe: false } });
-    navigate('/home')
+    navigate('/')
   };
 
   const togglePasswordVisibility = () => {
