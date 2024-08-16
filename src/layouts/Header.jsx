@@ -9,12 +9,16 @@ import SuccessPage from "../reusables/SuccessPage";
 import { Field } from "formik";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import ChangePasswod from "./ChangePasswod";
+import useActiveRow from "../reusables/useActiveRow";
 
 const Header = () => {
   const navigate = useNavigate();
   const [passwordPopUp,setPasswordPopUp] = useState(false);
+  const [activeRow,setActiveRow] = useActiveRow();
+
   const togglePasswordPopUp = ()=>{
     setPasswordPopUp(!passwordPopUp);
+    setActiveRow(null);
   };
   return (
     <div className="headerContainer">
@@ -93,7 +97,7 @@ const Header = () => {
         </div>
         <SuccessPage open={passwordPopUp} 
         handleClose = {togglePasswordPopUp}
-        boxStyles={{height:500,width:500}}
+        boxStyles={{height:550,width:500}}
         >
         <Box>
         <ChangePasswod cancel={togglePasswordPopUp}/>

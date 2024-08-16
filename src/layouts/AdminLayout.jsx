@@ -72,8 +72,11 @@ export default function AdminLayout() {
                 textDecoration: "none",
                 color: isActive ? "blue" : "inherit",
                 backgroundColor: isActive
-                  ? "rgba(0, 0, 255, 0.1)"
+                  ? "#E3ECFE"
                   : "transparent",
+                // backgroundColor: isActive
+                //   ? "rgba(0, 0, 255, 0.1)"
+                //   : "transparent",
                 display: "block",
               })}
             >
@@ -82,7 +85,7 @@ export default function AdminLayout() {
                   <ListItemButton
                     sx={{
                       backgroundColor: isActive
-                        ? "rgba(0, 0, 255, 0.1)"
+                        ? "#E3ECFE"
                         : "transparent",
                     }}
                   >

@@ -29,7 +29,7 @@ const Projects = () => {
 
   const columns = [
     { id: 'id', label: 'S.NO', minWidth: 50 },
-    { id: 'projRefNo', label: 'Proj.ref.no.', minWidth: 70 },
+    { id: 'projRefNo', label: 'PROJ.REF.NO.', minWidth: 70 },
     { id: 'projectName', label: 'PROJECT NAME', minWidth: 150 },
     { id: 'creator', label: 'CREATOR', minWidth: 50 },
     { id: 'dateCreated', label: 'DATE CREATED', minWidth: 100 },

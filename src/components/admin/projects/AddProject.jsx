@@ -39,6 +39,7 @@ const AddProject = (props) => {
                         name='projectRefNo'
                         // placeholder='Project Reference Number'
                         helperText={touched.projectRefNo ?errors.projectRefNo:null}
+                        error={touched.projectRefNo ?errors.projectRefNo:null}
                         />
                         <Field
                         as={TextField}
@@ -46,6 +47,7 @@ const AddProject = (props) => {
                         name='projectName'
                         // placeholder='Project Name'
                         helperText={touched.projectName ?errors.projectName:null}
+                        error={touched.projectName ?errors.projectName:null}
                         />
                         <Box sx={{display:'flex',justifyContent:'space-evenly',width:'100%'}}>
                         <Button variant='outlined' onClick={onClick}>Cancel</Button>

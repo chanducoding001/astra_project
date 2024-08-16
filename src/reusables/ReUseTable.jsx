@@ -22,12 +22,14 @@ import { styled } from '@mui/material/styles';
 import AddUser from '../components/admin/users/AddUser';
 import UserAccess from '../components/admin/users/UserAccess';
 import AddProject from '../components/admin/projects/AddProject';
+import useActiveRow from './useActiveRow';
 
 const ReUseTable = ({ rows, columns,screen,addBtn,title }) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [searchTerm, setSearchTerm] = useState('');
-  const [activeRow, setActiveRow] = useState(null);
+  const [activeRow, setActiveRow] = useActiveRow(null);
+  // const [activeRow, setActiveRow] = useState(null);
   const [addUserPopUp,setAddUserPopUp] = useState(false);
   const [userAccessPopUp,setUserAccessPopUp] = useState(false);
   const [deletePopUp,setDeletePopUp] = useState(false);
@@ -35,6 +37,7 @@ const ReUseTable = ({ rows, columns,screen,addBtn,title }) => {
 
   const handleAddUserPopUp = ()=>{
     setAddUserPopUp(!addUserPopUp);
+    setActiveRow(null);
   }
   const handleUserAccessPopUp = ()=>{
     setUserAccessPopUp(!userAccessPopUp);
@@ -80,7 +83,7 @@ const ReUseTable = ({ rows, columns,screen,addBtn,title }) => {
           }}
             variant="outlined"
             className={`action-card ${
-              activeRow === row.id ? 'showCard' : 'hideCard'
+              activeRow === row.id? 'showCard' : 'hideCard'
             }`}
           >
             <Button onClick={()=>{handleUserAccess(row?.id)}}>
@@ -109,7 +112,8 @@ const ReUseTable = ({ rows, columns,screen,addBtn,title }) => {
     )
   );
   const CustomButton = styled(Button)(({ theme }) => ({
-    color: 'white', 
+    color: 'white',
+    fontWeight:'bold', 
     backgroundColor: 'blue', 
     '& .MuiSvgIcon-root': {
       color: 'white', 
@@ -163,7 +167,8 @@ const ReUseTable = ({ rows, columns,screen,addBtn,title }) => {
                     minWidth: column.minWidth,
                     fontSize: '1rem',
                     // color:'#4C4E64DE',
-                    color:'blue',
+                    color:'black',
+                    // color:'blue',
                     textAlign:'center',
                     backgroundColor: '#E3ECFE',
                   }}

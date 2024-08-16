@@ -20,10 +20,17 @@ const Login = () => {
   };
 
   const validationSchema = Yup.object({
-    email: Yup.string().required('Email is required').email('Enter a valid email'),
-    password: Yup.string().required('Password is required').min(6, 'Password should be at least 6 characters long'),
+    email: Yup.string()
+      .required('Email is required')
+      .email('Enter a valid email'),
+    password: Yup.string()
+      .required('Password is required')
+      .matches(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{10,}$/,
+        'Password must be at least 10 characters long, contain one uppercase letter, one lowercase letter, one number, and one special character'
+      ),
   });
-
+  
   const onSubmit = (values, { resetForm }) => {
     console.log(values);
     resetForm({ values: { ...initialValues, rememberMe: false } });

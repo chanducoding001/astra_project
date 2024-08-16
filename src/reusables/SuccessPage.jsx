@@ -50,6 +50,7 @@
 import { Box, Button, Modal, Typography } from '@mui/material';
 import React from 'react';
 import '../auth/auth.css';
+import zIndex from '@mui/material/styles/zIndex';
 
 
 const wrapper = { 
@@ -58,7 +59,9 @@ const wrapper = {
     display: 'flex', 
     alignItems: 'center', 
     justifyContent: 'center', 
-    backgroundColor: 'whiteSmoke'
+    backgroundColor: 'whiteSmoke',
+    position:'relative',
+    zIndex:9999
 }
 const SuccessPage = (props) => {
   const { open, handleClose, children,boxStyles } = props;

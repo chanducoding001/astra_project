@@ -19,8 +19,14 @@ const initialValues = {
   confirmPassword: "",
 };
 const validationSchema = Yup.object({
-  currentPassword: Yup.string().required("Current password is required!"),
-  newPassword: Yup.string().required("New password is required!"),
+  currentPassword: Yup.string().required("Current password is required!").matches(
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{10,}$/,
+    'Password must be at least 10 characters long, contain one uppercase letter, one lowercase letter, one number, and one special character'
+  ),
+  newPassword: Yup.string().required("New password is required!").matches(
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{10,}$/,
+    'Password must be at least 10 characters long, contain one uppercase letter, one lowercase letter, one number, and one special character'
+  ),
   confirmPassword: Yup.string()
     .oneOf([Yup.ref("newPassword"), null], "Passwords must match")
     .required("Confirm Password is required"),
