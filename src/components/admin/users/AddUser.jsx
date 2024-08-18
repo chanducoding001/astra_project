@@ -5,7 +5,6 @@ import * as Yup from 'yup';
 
 const AddUser = (props) => {
     const {handleAddUserPopUp} = props;
-
     const initialValues = {email:''};
     const validationSchema = Yup.object({
       email:Yup.string().required('Email is required!').email('Enter valid email!'),
@@ -13,6 +12,7 @@ const AddUser = (props) => {
     const onSubmit = (values,{resetForm})=>{
       console.log(values);
       resetForm();
+      handleAddUserPopUp();
     }
   return (
     <>

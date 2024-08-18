@@ -58,13 +58,14 @@ const ChangePasswod = (props) => {
           <Form onSubmit={handleSubmit} className="signupForm">
             <Field
               as={TextField}
-              label="Confirm Password"
+              label="Current Password"
               variant="outlined"
               name="currentPassword"
               type={showPwd.currentPassword ? "text" : "password"}
               error={touched.currentPassword && !!errors.currentPassword}
               helperText={touched.currentPassword && errors.currentPassword}
               fullWidth
+              sx={{marginBottom:'50px'}}
               margin="normal"
               className="customFontColor"
               InputProps={{
@@ -84,15 +85,15 @@ const ChangePasswod = (props) => {
                 ),
               }}
             />
-            <Typography
+            {/* <Typography
               sx={{ textAlign: "justify", wordSpacing: "0px", padding: "10px" }}
             >
               Your password must have at least 10 characters. For better
               security, use a mix of letters, numbers, and special characters.
-            </Typography>
+            </Typography> */}
             <Field
               as={TextField}
-              label="Password"
+              label="New Password"
               variant="outlined"
               name="newPassword"
               type={showPwd.newPassword ? "text" : "password"}
@@ -116,13 +117,14 @@ const ChangePasswod = (props) => {
             />
             <Field
               as={TextField}
-              label="Confirm Password"
+              label="Confirm New Password"
               variant="outlined"
               name="confirmPassword"
               type={showPwd.confirmPassword ? "text" : "password"}
               error={touched.confirmPassword && !!errors.confirmPassword}
               helperText={touched.confirmPassword && errors.confirmPassword}
               fullWidth
+              
               margin="normal"
               className="customFontColor"
               InputProps={{

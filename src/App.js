@@ -8,6 +8,7 @@ import DummyHome from './auth/DummyHome';
 import AdminLayout from './layouts/AdminLayout';
 import Users from './components/admin/users/Users';
 import Projects from './components/admin/projects/Projects';
+import AddPassword from './components/endUser/AddPassword';
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
       <Route path='/home' element={<DummyHome/>}/>
       <Route path='/login' element={<Login/>}/>
       <Route path='/forgotPassword' element={<ForgotPassword/>}/>
+      <Route path='/addPassword' element={<AddPassword/>}/>
       <Route path='/' element={<AdminLayout/>}>
         <Route index element={<Users/>}/>
         <Route path='/projects' element={<Projects/>}/>
