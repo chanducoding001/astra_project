@@ -4,7 +4,7 @@ import React from 'react';
 import * as Yup from 'yup';
 
 const AddUser = (props) => {
-    const {handleAddUserPopUp} = props;
+    const {handleAddUserPopUp,handleAddUserResultPopUp} = props;
     const initialValues = {email:''};
     const validationSchema = Yup.object({
       email:Yup.string().required('Email is required!').email('Enter valid email!'),
@@ -13,6 +13,7 @@ const AddUser = (props) => {
       console.log(values);
       resetForm();
       handleAddUserPopUp();
+      handleAddUserResultPopUp();
     }
   return (
     <>

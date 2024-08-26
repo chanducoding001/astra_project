@@ -13,6 +13,7 @@ import {
 import React, { useState } from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
+import PopUp from "../reusables/PopUp";
 const initialValues = {
   currentPassword: "",
   newPassword: "",
@@ -37,12 +38,14 @@ const ChangePasswod = (props) => {
     newPassword: false,
     confirmPassword: false,
   });
-  const {cancel} = props
+  const {cancel,handleChangePasswordResultPopUp} = props
   const onSubmit = (values, { resetForm }) => {
     console.log(values);
     resetForm();
     cancel();
+    handleChangePasswordResultPopUp()
   };
+  
   const togglePassword = (text) => {
     setShowPwd({ ...showPwd, [text]: !showPwd[text] });
   };
@@ -153,6 +156,7 @@ const ChangePasswod = (props) => {
                 Update
               </Button>
             </Box>
+            
           </Form>
         )}
       </Formik>

@@ -23,8 +23,6 @@ const Projects = () => {
       version:'A',
       projectLink:<NavLink to='/' style={projectLinkStyles}>go to project</NavLink>
     },
-    
-    
   ];
 
   const columns = [

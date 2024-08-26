@@ -10,16 +10,22 @@ import { Field } from "formik";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import ChangePasswod from "./ChangePasswod";
 import useActiveRow from "../reusables/useActiveRow";
+import PopUp from "../reusables/PopUp";
 
 const Header = () => {
   const navigate = useNavigate();
   const [passwordPopUp,setPasswordPopUp] = useState(false);
   const [activeRow,setActiveRow] = useActiveRow();
+  const [openPopUp,setOpenPopUp] = useState(false);
 
   const togglePasswordPopUp = ()=>{
     setPasswordPopUp(!passwordPopUp);
     setActiveRow(null);
   };
+
+  const handleOpenPopUp = ()=>{
+    setOpenPopUp(!openPopUp);
+  }
   return (
     <div className="headerContainer">
       <div className="headerContentContainer">
@@ -100,8 +106,13 @@ const Header = () => {
         boxStyles={{height:550,width:500}}
         >
         <Box>
-        <ChangePasswod cancel={togglePasswordPopUp}/>
+        <ChangePasswod cancel={togglePasswordPopUp} handleChangePasswordResultPopUp={handleOpenPopUp}/>
+        
         </Box>
+        </SuccessPage>
+        <SuccessPage open={openPopUp} handleClose={handleOpenPopUp} boxStyles={{height:250,width:300,bgColor:''}}>
+                <Typography>Password change successful</Typography>
+                <Button onClick={handleOpenPopUp} variant="contained">Close</Button>
         </SuccessPage>
       </div>
     </div>

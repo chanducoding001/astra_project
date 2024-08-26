@@ -33,8 +33,20 @@ const ReUseTable = ({ rows, columns,screen,addBtn,title }) => {
   const [addUserPopUp,setAddUserPopUp] = useState(false);
   const [userAccessPopUp,setUserAccessPopUp] = useState(false);
   const [deletePopUp,setDeletePopUp] = useState(false);
+  const [userAccessResultPopUp,setUserAccessResultPopUp] = useState(false);
   const [addProjectPopUp,setAddProjectPopUp] = useState(false);
-
+  const [addUserResultPopUp,setAddUserResultPopUp] = useState(false);
+  const [addProjectResultPopUp,setAddProjectResultPopUp] = useState(false);
+  
+  const handleUserAccessResultPopUp = ()=>{
+    setUserAccessResultPopUp(!userAccessResultPopUp);
+  }
+  const handleAddProjectResultPopUp = ()=>{
+    setAddProjectResultPopUp(!addProjectResultPopUp);
+  }
+  const handleAddUserResultPopUp = ()=>{
+    setAddUserResultPopUp(!addUserResultPopUp);
+  }
   const handleAddUserPopUp = ()=>{
     setAddUserPopUp(!addUserPopUp);
     setActiveRow(null);
@@ -218,18 +230,30 @@ const ReUseTable = ({ rows, columns,screen,addBtn,title }) => {
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
-      <SuccessPage open={addUserPopUp} handleClose = {handleAddUserPopUp} boxStyles = {{height:250,width:300}}>
-        <AddUser handleAddUserPopUp={handleAddUserPopUp}/>
+      <SuccessPage open={addUserPopUp} handleClose = {handleAddUserPopUp}  boxStyles = {{height:250,width:300}}>
+        <AddUser handleAddUserPopUp={handleAddUserPopUp} handleAddUserResultPopUp={handleAddUserResultPopUp}/>
+      </SuccessPage>
+      <SuccessPage open={addUserResultPopUp} handleClose = {handleAddUserResultPopUp} boxStyles={{height:250,width:300,bgColor:''}}>
+        <Typography>User Added successfully!</Typography>
+        {/* <Button variant='outlined' onClick={handleAddUserResultPopUp}>Close</Button> */}
       </SuccessPage>
       <SuccessPage open={userAccessPopUp} handleClose = {handleUserAccessPopUp} boxStyles={{padding:1}}>
-        <UserAccess handleUserAccessPopUp={handleUserAccessPopUp}/>
+        <UserAccess handleUserAccessPopUp={handleUserAccessPopUp} handleUserAccessResultPopUp={handleUserAccessResultPopUp}/>
+      </SuccessPage>
+      <SuccessPage open={userAccessResultPopUp} handleClose = {handleUserAccessResultPopUp} boxStyles={{height:250,width:300,bgColor:''}}>
+        <Typography>User Access changed successfully!</Typography>
+        <Button variant='outlined' onClick={handleUserAccessResultPopUp}>Close</Button>
       </SuccessPage>
       <SuccessPage open={deletePopUp} handleClose = {handleDeletePopUp}>
         <Typography>You have successfully Deleted User!</Typography>
           <Button variant='contained' onClick={handleDeletePopUp}>Close</Button>
       </SuccessPage>
       <SuccessPage open={addProjectPopUp} handleClose = {handleAddProjectPopUp}>
-        <AddProject onClick={handleAddProjectPopUp}/>
+        <AddProject onClick={handleAddProjectPopUp} handleAddProjectResultPopUp={handleAddProjectResultPopUp}/>
+      </SuccessPage>
+      <SuccessPage open={addProjectResultPopUp} handleClose = {handleAddProjectResultPopUp} boxStyles={{height:250,width:300,bgColor:''}}>
+      <Typography>Project Added successfully!</Typography>
+      <Button variant='contained' onClick={handleAddProjectResultPopUp}>Close</Button>
       </SuccessPage>
       
     </Paper>

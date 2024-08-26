@@ -3,7 +3,7 @@ import React from "react";
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 
 const UserAccess = (props) => {
-  const { handleUserAccessPopUp } = props;
+  const { handleUserAccessPopUp,handleUserAccessResultPopUp } = props;
   
   const accessOptions = [
     {
@@ -103,7 +103,10 @@ const UserAccess = (props) => {
       </Box>
       <Box sx={{ mt: 2 }}>
         <Button onClick={handleUserAccessPopUp} variant='outlined' sx={{ mr: 1 }}>Cancel</Button>
-        <Button onClick={handleUserAccessPopUp} variant='contained'>Update</Button>
+        <Button onClick={()=>{
+          handleUserAccessPopUp();
+          handleUserAccessResultPopUp();
+        }} variant='contained'>Update</Button>
       </Box>
     </Box>
   );

@@ -14,12 +14,39 @@ import ContentPasteOutlinedIcon from "@mui/icons-material/ContentPasteOutlined";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import { NavLink, Outlet } from "react-router-dom";
 import Header from "./Header";
+import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+
+
 const drawerWidth = 240;
 
 export default function AdminLayout() {
-  const icons = [<PersonOutlineIcon />, <ContentPasteOutlinedIcon />];
-  const listText = ["Users", "Projects"];
-  const listLinks = ["/", "/projects"];
+  // const icons = [<PersonOutlineIcon />, <ContentPasteOutlinedIcon />];
+  // const listText = ["Users", "Projects"];
+  // const listLinks = ["/", "/projects"];
+  const users = {
+    superAdmin:{
+      icons:[[<PersonOutlineIcon />,<PersonOutlineIcon />],[<ContentPasteOutlinedIcon />,<ContentPasteOutlinedIcon />]],
+      listText:[['Customers List','Suspended'],['Admin Users','Projects']],
+      listLinks:[['/','/superAdminSuspended'],['/superAdminUsers','/superAdminProjects']]
+    },
+    customerAdmin:{
+      icons:[<PersonOutlineIcon />, <ContentPasteOutlinedIcon />],
+      listText:["Users", "Projects"],
+      listLinks:["/", "/projects"]
+    },
+    endUser:{
+      icons:[<ContentPasteOutlinedIcon />],
+      listText:["Projects"],
+      listLinks:["/"]
+    }
+  };
+  // super admin  - role = 1
+  // customer admin - role = 2
+  // end user - role = 3
+  const {icons,listText,listLinks} = users.superAdmin;
+  const role = +localStorage.getItem('astraUser');
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -64,7 +91,88 @@ export default function AdminLayout() {
         <Toolbar />
         <Divider />
         <List>
-          {listText.map((text, index) => (
+          {
+            role ===1 ? (
+          <>
+          <Accordion>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon sx={{fill:'white'}}/>}
+          aria-controls="panel1-content"
+          id="panel1-header"
+          sx={{backgroundColor:'#666CFF',color:'white',
+            display:'flex',
+            justifyContent:'space-between',width:'100%'}}
+        >
+          <div style={{width:'60%',
+            display:'flex',alignItems:'center',justifyContent:'space-around'}}>
+          <span><HomeOutlinedIcon style={{fill:'white'}}/></span>
+          <span style={{color:'white'}}>Customer</span>
+          </div>
+        </AccordionSummary>
+        <AccordionDetails>
+        {listText[0].map((text, index) => (
+            <NavLink
+              to={listLinks[0][index]}
+              key={text}
+              style={({ isActive }) => ({
+                textDecoration: "none",
+                color: isActive ? "blue" : "inherit",
+                backgroundColor: isActive
+                  ? "#E3ECFE"
+                  : "transparent",
+                display: "block",
+              })}
+            >
+              {({ isActive }) => (
+                <ListItem disablePadding>
+                  <ListItemButton
+                    sx={{
+                      backgroundColor: isActive
+                        ? "#E3ECFE"
+                        : "transparent",
+                    }}
+                  >
+                    <ListItemIcon>{icons[0][index]}</ListItemIcon>
+                    <ListItemText primary={text} />
+                  </ListItemButton>
+                </ListItem>
+              )}
+            </NavLink>
+          ))}
+        </AccordionDetails>
+      </Accordion>
+      {listText[1].map((text, index) => (
+            <NavLink
+              to={listLinks[1][index]}
+              key={text}
+              style={({ isActive }) => ({
+                textDecoration: "none",
+                color: isActive ? "blue" : "inherit",
+                backgroundColor: isActive
+                  ? "#E3ECFE"
+                  : "transparent",
+                display: "block",
+              })}
+            >
+              {({ isActive }) => (
+                <ListItem disablePadding>
+                  <ListItemButton
+                    sx={{
+                      backgroundColor: isActive
+                        ? "#E3ECFE"
+                        : "transparent",
+                    }}
+                  >
+                    <ListItemIcon>{icons[1][index]}</ListItemIcon>
+                    <ListItemText primary={text} />
+                  </ListItemButton>
+                </ListItem>
+              )}
+            </NavLink>
+          ))}
+          </>
+            ):<>
+            {listText.map((text, index) => (
             <NavLink
               to={listLinks[index]}
               key={text}
@@ -74,9 +182,6 @@ export default function AdminLayout() {
                 backgroundColor: isActive
                   ? "#E3ECFE"
                   : "transparent",
-                // backgroundColor: isActive
-                //   ? "rgba(0, 0, 255, 0.1)"
-                //   : "transparent",
                 display: "block",
               })}
             >
@@ -96,6 +201,8 @@ export default function AdminLayout() {
               )}
             </NavLink>
           ))}
+            </>
+          }
         </List>
       </Drawer>
       <Box
