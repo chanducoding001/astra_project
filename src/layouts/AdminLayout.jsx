@@ -27,9 +27,9 @@ export default function AdminLayout() {
   // const listLinks = ["/", "/projects"];
   const users = {
     superAdmin:{
-      icons:[[<PersonOutlineIcon />,<PersonOutlineIcon />],[<ContentPasteOutlinedIcon />,<ContentPasteOutlinedIcon />]],
-      listText:[['Customers List','Suspended'],['Admin Users','Projects']],
-      listLinks:[['/','/superAdminSuspended'],['/superAdminUsers','/superAdminProjects']]
+      icons:[[<PersonOutlineIcon />,<PersonOutlineIcon />,<PersonOutlineIcon />],[<ContentPasteOutlinedIcon />,<ContentPasteOutlinedIcon />]],
+      listText:[['Customers List','To Review','Suspended'],['Admin Users','Projects']],
+      listLinks:[['/','/superAdminReview','/superAdminSuspended'],['/superAdminUsers','/superAdminProjects']]
     },
     customerAdmin:{
       icons:[<PersonOutlineIcon />, <ContentPasteOutlinedIcon />],

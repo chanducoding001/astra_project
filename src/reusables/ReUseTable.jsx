@@ -23,6 +23,14 @@ import AddUser from '../components/admin/users/AddUser';
 import UserAccess from '../components/admin/users/UserAccess';
 import AddProject from '../components/admin/projects/AddProject';
 import useActiveRow from './useActiveRow';
+import ReuseMenu from './ReuseMenu';
+import NearMeDisabledIcon from '@mui/icons-material/NearMeDisabled';
+import NearMeIcon from '@mui/icons-material/NearMe';
+import DeleteIcon from '@mui/icons-material/Delete';
+import RepeatOutlinedIcon from '@mui/icons-material/RepeatOutlined';
+import DoneIcon from '@mui/icons-material/Done';
+import ClearIcon from '@mui/icons-material/Clear';
+
 
 const ReUseTable = ({ rows, columns,screen,addBtn,title }) => {
   const [page, setPage] = useState(0);
@@ -81,6 +89,7 @@ const ReUseTable = ({ rows, columns,screen,addBtn,title }) => {
     setDeletePopUp(!deletePopUp);
     setActiveRow(null);
   }
+  // modify row data
   const getCellContent = (column, row) => {
     if (column.id === 'action') {
       return (
@@ -109,7 +118,24 @@ const ReUseTable = ({ rows, columns,screen,addBtn,title }) => {
           </Card>
         </div>
       );
-    } else {
+    }else if(column.id==='details'){
+      return <Button variant='outlined'>Details</Button>
+    }else if(column.id==='suspendedAction'){
+      return <ReuseMenu 
+      btnText={<MoreVertIcon/>} 
+      menuItems={['Unsuspended']} 
+      menuIcons={[<NearMeDisabledIcon/>]}/>
+    }else if(column.id==='reviewAction'){
+      return <ReuseMenu 
+      btnText={<MoreVertIcon/>} 
+      menuItems={['Approved','Reject']} 
+      menuIcons={[<DoneIcon/>,<ClearIcon/>]}/>
+    }else if(column.id==='adminUsersAction'){
+      return <ReuseMenu 
+      btnText={<MoreVertIcon/>} 
+      menuItems={['Suspend','Unsuspend','Delete','Change Role']} 
+      menuIcons={[<DoneIcon/>,<NearMeDisabledIcon/>,<DeleteIcon/>,<RepeatIcon/>]}/>
+    }else {
       return column.format && typeof row[column.id] === 'number'
         ? column.format(row[column.id])
         : row[column.id];

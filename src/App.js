@@ -14,6 +14,7 @@ import CustomersList from './components/superAadmin/cutomers/CustomersList';
 import AdminUsers from './components/superAadmin/AdminUsers';
 import AdminProjects from './components/superAadmin/AdminProjects';
 import Suspended from './components/superAadmin/cutomers/Suspended';
+import Review from './components/superAadmin/cutomers/Review';
 
 const App = () => {
   const [astraUser,setAstraUser] = useState(null);
@@ -43,6 +44,7 @@ const App = () => {
         <Route path='/superAdminUsers' element={<AdminUsers/>}/>
         <Route path='/superAdminProjects' element={<AdminProjects/>}/>
         <Route path='/superAdminSuspended' element={<Suspended/>}/>
+        <Route path='/superAdminReview' element={<Review/>}/>
       </Route>
     </Routes>
     </BrowserRouter>
