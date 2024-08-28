@@ -50,8 +50,8 @@ const AdminProjects = () => {
   ];
   return (
     <>
-    {/* <h2>Projects</h2> */}
-    <ReUseTable rows={rows} columns={columns} screen='adminProjects' addBtn={false} title='Projects'/>
+    <h2>Projects</h2>
+    {/* <ReUseTable rows={rows} columns={columns} screen='adminProjects' addBtn={false} title='Projects'/> */}
     </>
   )
 }

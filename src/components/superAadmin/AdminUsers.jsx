@@ -17,7 +17,8 @@ const AdminUsers = () => {
 
   return (
     <>
-    <ReUseTable rows={rows} columns={columns} screen='adminUsers' addBtn={false} title='Admin User List'/>
+    <h2>Admin Users</h2>
+    {/* <ReUseTable rows={rows} columns={columns} screen='adminUsers' addBtn={false} title='Admin User List'/> */}
     </>
   )
 }

@@ -45,7 +45,7 @@ export default function AdminLayout() {
   // super admin  - role = 1
   // customer admin - role = 2
   // end user - role = 3
-  const {icons,listText,listLinks} = users.superAdmin;
+  const {icons,listText,listLinks} = users.customerAdmin;
   const role = +localStorage.getItem('astraUser');
   return (
     <Box sx={{ display: "flex" }}>
